@@ -4,10 +4,6 @@ The most up-to-date lexer and highlighter for [_Mathematica_](http://wolfram.com
  source code using the [pygments](http://pygments.org) engine.
 
 ![](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)
-![](https://img.shields.io/badge/version-0.3.4-yellow.svg?style=flat-square)
-![](https://img.shields.io/travis/rsmenon/pygments-mathematica/master.svg?style=flat-square)
-![](https://img.shields.io/badge/python-2.7%7C3.3%2B-lightgrey.svg?style=flat-square)
-![](https://img.shields.io/pypi/v/pygments-mathematica.svg?style=flat-square)
 ## Features
 
 It can currently lex and highlight:
@@ -41,13 +37,13 @@ With[{max = 2 Pi, min = 0},
 
 ### Using `pip`
 
-Run `pip install pygments-mathematica` from the command line. That's it!
+Run `pip install mathics-pygments` from the command line. That's it!
 
 ### From source code
 
 If you'd like to make modifications to the color scheme for personal use or if you'd like to try the
 most recent release that might not yet be available in PyPi, download and unzip the source code
-from the [latest release](https://github.com/rsmenon/pygments-mathematica/releases/latest). After
+from the [latest release](https://github.com/Mathics3/mathics-pygments/releases/latest). After
 you've [installed Pygments](http://pygments.org/download/) (`pip install Pygments` works well
 if you already have python setup on your system), run the following from the repo's root directory:
 
@@ -153,7 +149,7 @@ scss mma.scss > mma.css
 
 For other applications including command line usage, the lexer ships with a style named `mathematica`.
 (See the arguments to the `pygmentize` command in the section above.) To use different colors, modify
-the style in `mathematica/style.py` and run `python setup.py install` again.
+the style in `mathics_pygemnts/style.py` and run `python setup.py install` again.
 
 If you fancy the default style that ships with the _Mathematica_ notebook, use the `mathematica-notebook` scheme.
 
@@ -173,4 +169,3 @@ The lexing rules for _Mathematica_ syntax are largely based on two prior project
  - My [vim-mathematica](https://github.com/rsmenon/vim-mathematica) syntax highlighting plugin.
  - Patrick Scheibe's [Mathematica plugin for IntelliJ IDEA](https://github.com/halirutan/Mathematica-IntelliJ-Plugin) (if you develop in _Mathematica_ and
  haven't seen this yet, please do try it out. It's wonderful!).
-

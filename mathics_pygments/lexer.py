@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Copyright (c) 2021 Rocky Bernstein
 # Copyright (c) 2016 rsmenon
 # Licensed under the MIT License (https://opensource.org/licenses/MIT)
 
@@ -7,7 +8,9 @@ from collections import defaultdict
 from pygments.lexer import RegexLexer, include, words, bygroups
 from pygments.token import Token as PToken
 
-import mathematica.builtins as mma
+import mathics_pygemnts.builtins as mma
+
+from mathics_scanner.tokeniser import number_pattern
 
 
 class Regex:
@@ -15,11 +18,6 @@ class Regex:
     NAMED_CHARACTER = r'\\[{identifier}]'.format(identifier=IDENTIFIER)
     SYMBOLS = (r'[`]?({identifier}|{named_character})(`({identifier}|{named_character}))*[`]?'
                .format(identifier=IDENTIFIER, named_character=NAMED_CHARACTER))
-    INTEGER = r'[0-9]+'
-    FLOAT = r'({integer})?\.[0-9]+|{integer}\.'.format(integer=INTEGER)
-    REAL = r'({integer}|{float})`({integer}|{float})?|{float}'.format(integer=INTEGER, float=FLOAT)
-    BASE_NUMBER = r'{integer}\s*\^\^\s*({real}|{integer})'.format(integer=INTEGER, real=REAL)
-    SCIENTIFIC_NUMBER = r'({real}|{integer})\s*\*\^\s*{integer}'.format(real=REAL, integer=INTEGER)
     PATTERNS = r'{symbol}\_{{1,3}}({symbol})?|({symbol})?\_{{1,3}}{symbol}'.format(symbol=SYMBOLS)
     SLOTS = r'#{symbol}|#\"{symbol}\"|#{{1,2}}[0-9]*'.format(symbol=SYMBOLS)
     MESSAGES = r'(::)(\s*)({symbol})'.format(symbol=SYMBOLS)
@@ -74,12 +72,7 @@ class MathematicaLexer(RegexLexer):
             (r'\*\)', MToken.COMMENT, '#pop'),
             (r'\([^\*]?|[^\*]?\)', MToken.COMMENT),
         ],
-        'numbers': [
-            (Regex.BASE_NUMBER, MToken.NUMBER),
-            (Regex.SCIENTIFIC_NUMBER, MToken.NUMBER),
-            (Regex.REAL, MToken.NUMBER),
-            (Regex.INTEGER, MToken.NUMBER),
-        ],
+        'numbers': [number_patern]
         'strings': [
             (r'[^"\\]+', MToken.STRING),
             (r'^[\\"]', MToken.STRING),

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
+# Copyright (c) 2021 Rocky Bernstein
 # Copyright (c) 2016 rsmenon
 # Licensed under the MIT License (https://opensource.org/licenses/MIT)
 
-from nose.tools import assert_equal
 from pygments.token import Token
 
 import mathematica.builtins as mma
@@ -16,7 +16,7 @@ class TestMathematicaLexer:
     def verify(self, code, expected):
         expected.append((Token.Text.Whitespace, '\n'))
         returned = list(self.lexer.get_tokens(code))
-        assert_equal(expected, returned)
+        assert expected == returned
 
     def verify_all(self, code_list, expected_list):
         for code, expected in zip(code_list, expected_list):

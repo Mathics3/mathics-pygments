@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
+# Copyright (c) 2021 Rocky Bernstein
 # Copyright (c) 2016 rsmenon
 # Licensed under the MIT License (https://opensource.org/licenses/MIT)
 
 from pygments.style import Style
 
-from mathematica.lexer import MToken
+from mathics_pygments.lexer import MToken
 
 
 class MathematicaStyle(Style):

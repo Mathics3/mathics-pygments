@@ -82,8 +82,8 @@ GROUPINGS = (
 )
 
 SYSTEM_SYMBOLS = {
-    u'\[Element]',
-    u'\[Pi]',
+    r'\[Element]',
+    r'\[Pi]',
     u'AASTriangle',
     u'AbelianGroup',
     u'Abort',

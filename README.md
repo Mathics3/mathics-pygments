@@ -1,5 +1,8 @@
 # Mathematica lexer and highlighter for Pygments
 
+[![mathics-pygments (OSX)](https://github.com/Mathics3/mathics-pygments/actions/workflows/osx.yaml/badge.svg)](https://github.com/Mathics3/mathics-pygments/actions/workflows/osx.yaml)
+[![mathics-pygments (ubuntu)](https://github.com/Mathics3/mathics-pygments/actions/workflows/ubuntu.yaml/badge.svg)](https://github.com/Mathics3/mathics-pygments/actions/workflows/ubuntu.yaml)
+
 The most up-to-date lexer and highlighter for [_Mathematica_](http://wolfram.com/mathematica)/Wolfram Language
  source code using the [pygments](http://pygments.org) engine.
 

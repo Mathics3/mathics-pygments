@@ -169,6 +169,6 @@ by Pygments, but I am interested in supporting this eventually, so collaboration
 
 The lexing rules for _Mathematica_ syntax are largely based on two prior projects:
 
- - My [vim-mathematica](https://github.com/rsmenon/vim-mathematica) syntax highlighting plugin.
+ - `rsmenon`'s [vim-mathematica](https://github.com/rsmenon/vim-mathematica) syntax highlighting plugin.
  - Patrick Scheibe's [Mathematica plugin for IntelliJ IDEA](https://github.com/halirutan/Mathematica-IntelliJ-Plugin) (if you develop in _Mathematica_ and
  haven't seen this yet, please do try it out. It's wonderful!).

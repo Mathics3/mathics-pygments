@@ -29,9 +29,29 @@ Copyright 2021 Rocky Bernstein
 
 from setuptools import setup
 
+# Ensure user has the correct Python version
+if sys.version_info < (3, 6):
+    print("mathicsscript does not support Python %d.%d" % sys.version_info[:2])
+    sys.exit(-1)
+
+
+import os.path as osp
+
+def get_srcdir():
+    filename = osp.normcase(osp.dirname(osp.abspath(__file__)))
+    return osp.realpath(filename)
+
+
+def read(*rnames):
+    return open(osp.join(get_srcdir(), *rnames)).read()
+
+
+# stores __version__ in the current namespace
+exec(compile(read("mathics_pygments/version.py"), "mathics_pygments/version.py", "exec"))
+
 setup(
-    name="mathics-pygments",
-    version="1.0.0",
+    name="mathics_pygments",
+    version=__version__,  # noqa
     description="Mathematica/Wolfram Language Lexer for Pygments",
     long_description=__doc__,
     author="Rocky Bernstein",
@@ -53,7 +73,7 @@ setup(
         "Topic :: Utilities",
     ],
     packages=["mathics_pygments"],
-    install_requires=["Pygments >= 2"],
+    install_requires=["Pygments >= 2", "Mathics_Scanner"],
     include_package_data=False,
     platforms=["any"],
     entry_points={

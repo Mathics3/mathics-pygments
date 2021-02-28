@@ -5,8 +5,8 @@
 
 from pygments.token import Token
 
-import mathematica.builtins as mma
-from mathematica.lexer import MathematicaLexer, MToken
+import mathics_pygments.builtins as mma
+from mathics_pygments.lexer import MathematicaLexer, MToken
 
 
 class TestMathematicaLexer:

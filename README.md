@@ -144,10 +144,10 @@ pygmentize -O full,style=mathematica -f html -l wl -o package.html package.m
 The default styles that come with Pygments do not go well with _Mathematica_ code. If you're using this lexer
 for highlighting source code on a website, use the `mma.scss` [Sass](http://sass-lang.com) file in this repository to obtain good default colors (as shown in the
 screenshot). You can, if you choose, modify the colors in the SCSS file and then convert it to CSS
-using the `scss` compiler as:
+using the `sass` compiler as:
 
 ```
-scss mma.scss > mma.css
+make mma.css  # Same thing as: sass mma.scss mma.css
 ```
 
 For other applications including command line usage, the lexer ships with a style named `mathematica`.

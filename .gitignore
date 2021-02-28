@@ -6,6 +6,8 @@
 .ropeproject/
 .sass-cache/
 /.python-version
+/mma.css
+/mma.css.map
 __pycache__/
 build/
 dist/

@@ -5,6 +5,7 @@
 .idea/
 .ropeproject/
 .sass-cache/
+/.cache
 /.python-version
 /mma.css
 /mma.css.map

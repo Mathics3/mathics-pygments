@@ -28,6 +28,7 @@ Copyright 2021 Rocky Bernstein
 """
 
 from setuptools import setup
+import sys
 
 # Ensure user has the correct Python version
 if sys.version_info < (3, 6):

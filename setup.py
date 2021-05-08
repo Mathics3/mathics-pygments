@@ -74,7 +74,7 @@ setup(
         "Topic :: Utilities",
     ],
     packages=["mathics_pygments"],
-    install_requires=["Pygments >= 2", "Mathics_Scanner"],
+    install_requires=["Pygments >= 2", "Mathics_Scanner", "ujson"],
     include_package_data=False,
     platforms=["any"],
     entry_points={

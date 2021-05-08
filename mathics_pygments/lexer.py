@@ -26,7 +26,6 @@ class Regex:
     GROUPINGS = words(mma.GROUPINGS).get()
     OPERATORS = words(mma.OPERATORS).get()
 
-
 class MToken:
     BUILTIN = PToken.Name.Builtin
     COMMENT = PToken.Comment

@@ -76,11 +76,6 @@ setup(
         "Topic :: Text Processing",
         "Topic :: Utilities",
     ],
-    package_data={
-        "mathematica": [
-            "data/mma-tables.json",
-        ],
-    },
     packages=["mathics_pygments"],
     package_data={
         "mathics_pygments": [

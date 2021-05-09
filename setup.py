@@ -3,7 +3,7 @@
 # Copyright (c) 2016 rsmenon
 # Licensed under the MIT License (https://opensource.org/licenses/MIT)
 
-u"""This is the most up-to-date lexer and highlighter for Mathematica/Wolfram Language source code \
+u"""This is a lexer and highlighter for Mathematica/Wolfram Language source code \
 using the pygments engine.
 
 It currently supports:

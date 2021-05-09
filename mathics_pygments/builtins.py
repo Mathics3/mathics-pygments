@@ -6543,7 +6543,9 @@ SYSTEM_SYMBOLS = {
     '$WolframUUID',
 }
 
-UNICODE_OPERATORS = {
+UNICODE_OPERATORS = set(_data["unicode-operators"])
+
+UNICODE_OPERATORS_OLD = {
     '·',  # \[CenterDot]
     '∧',  # \[And]
     '⊙',  # \[CircleDot]
@@ -6626,6 +6628,7 @@ UNICODE_OPERATORS = {
     '⊎',  # \[UnionPlus]
     '∴',  # \[Therefore]
     '∵',  # \[Because]
+     # Start here
     '⊓',  # \[SquareIntersection]
     '⊏',  # \[SquareSubset]
     '⊑',  # \[SquareSubsetEqual]
@@ -6755,6 +6758,12 @@ UNICODE_OPERATORS = {
     '⋀',  # \[Wedge]
 }
 
+
+# print(len(UNICODE_OPERATORS_OLD), len(UNICODE_OPERATORS))
+# print(set(set(UNICODE_OPERATORS_OLD) - set(UNICODE_OPERATORS)))
+
+UNICODE_OPERATORS = sorted(UNICODE_OPERATORS_OLD | UNICODE_OPERATORS - {"∞"})
+
 UNICODE_GROUPINGS = {
     '〚',  # \[LeftDoubleBracket]
     '〛',  # \[RightDoubleBracket]
@@ -6762,8 +6771,11 @@ UNICODE_GROUPINGS = {
     '〉',  # \[RightAngleBracket]
 }
 
+
+
 UNICODE_SYSTEM_SYMBOLS = {
     'π',
+    "∞",
 }
 
 UNICODE_SYSTEM_UNDEFINED_SYMBOLS = {

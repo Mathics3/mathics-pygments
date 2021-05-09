@@ -221,6 +221,7 @@ class TestMathematicaLexer:
         expected = [[(MToken.OPERATOR, op)] for op in code]
         self.verify_all(code, expected)
 
+    @pytest.mark.skip("Need to go scope_simple")
     def test_unicode_undefined(self):
         code = list(mma.UNICODE_SYSTEM_UNDEFINED_SYMBOLS)
         expected = [[(MToken.SYMBOL, sym)] for sym in code]

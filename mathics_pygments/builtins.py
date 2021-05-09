@@ -6567,7 +6567,6 @@ UNICODE_OPERATORS_OLD = {
     '≠',  # \[NotEqual]
     '≥',  # \[GreaterEqual]
     '≤',  # \[LessEqual]
-    '∞',  # \[Infinity] # is not an operator
     '⋂',  # \[Intersection]
     '≢',  # \[NotCongruent]
     '≭',  # \[NotCupCap]
@@ -6762,7 +6761,7 @@ UNICODE_OPERATORS_OLD = {
 # print(len(UNICODE_OPERATORS_OLD), len(UNICODE_OPERATORS))
 # print(set(set(UNICODE_OPERATORS_OLD) - set(UNICODE_OPERATORS)))
 
-UNICODE_OPERATORS = sorted(UNICODE_OPERATORS_OLD | UNICODE_OPERATORS - {"∞"})
+UNICODE_OPERATORS = sorted(UNICODE_OPERATORS_OLD | UNICODE_OPERATORS)
 
 UNICODE_GROUPINGS = {
     '〚',  # \[LeftDoubleBracket]

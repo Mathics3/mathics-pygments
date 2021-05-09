@@ -3,8 +3,12 @@
 [![mathics-pygments (OSX)](https://github.com/Mathics3/mathics-pygments/actions/workflows/osx.yaml/badge.svg)](https://github.com/Mathics3/mathics-pygments/actions/workflows/osx.yaml)
 [![mathics-pygments (ubuntu)](https://github.com/Mathics3/mathics-pygments/actions/workflows/ubuntu.yaml/badge.svg)](https://github.com/Mathics3/mathics-pygments/actions/workflows/ubuntu.yaml)
 
-The most up-to-date lexer and highlighter for [_Mathematica_](http://wolfram.com/mathematica)/Wolfram Language
+A lexer and highlighter for [_Mathematica_](http://wolfram.com/mathematica)/Wolfram Language
  source code using the [pygments](http://pygments.org) engine.
+
+ This code is based on [pygments-mathematica](https://pypi.org/project/pygments-mathematica/) but has been specially revised so it interactis with [mathicsscript](https://pypi.org/project/mathicsscript/). As such it works better that pygments-mathematica for this use, and possibly might not be as good in other contexts. Over time though this should get address.
+
+ Another difference, is the fact that this package is relegate knowledge about operator names to [Mathics-Scanner](https://pypi.org/project/Mathics-Scanner/).
 
 ![](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)
 ## Features

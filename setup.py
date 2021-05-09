@@ -8,10 +8,10 @@ using the pygments engine.
 
 It currently supports:
 
- - All builtin functions in the ``System`` context including unicode symbols like `` `` except \
+ - All builtin functions in the ``System`` context including unicode symbols except \
  those that use characters from the private unicode space (e.g. ``\[FormalA]``).
  - User defined symbols, including those in a context.
- - All operators including unicode operators like `` `` and `` ``.
+ - All operators including unicode operators like \u03C0.
  - Comments, including multi line and nested.
  - Strings, including multi line and escaped quotes.
  - Patterns, slots (including named slots ``#name`` introduced in version 10) and slot sequences.
@@ -58,6 +58,7 @@ setup(
     version=__version__,  # noqa
     description="Mathematica/Wolfram Language Lexer for Pygments",
     long_description=__doc__,
+    long_description_content_type="text/x-rst",
     author="Rocky Bernstein",
     author_email="rb@dustyfeet.com",
     license="MIT",
@@ -76,12 +77,12 @@ setup(
         "Topic :: Text Processing",
         "Topic :: Utilities",
     ],
+    packages=["mathics_pygments"],
     package_data={
-        "mathematica": [
+        "mathics_pygments": [
             "data/mma-tables.json",
         ],
     },
-    packages=["mathics_pygments"],
     install_requires=["Pygments >= 2", "Mathics_Scanner", "ujson"],
     include_package_data=False,
     platforms=["any"],

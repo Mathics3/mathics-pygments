@@ -38,6 +38,7 @@ if sys.version_info < (3, 6):
 
 import os.path as osp
 
+
 def get_srcdir():
     filename = osp.normcase(osp.dirname(osp.abspath(__file__)))
     return osp.realpath(filename)
@@ -48,7 +49,9 @@ def read(*rnames):
 
 
 # stores __version__ in the current namespace
-exec(compile(read("mathics_pygments/version.py"), "mathics_pygments/version.py", "exec"))
+exec(
+    compile(read("mathics_pygments/version.py"), "mathics_pygments/version.py", "exec")
+)
 
 setup(
     name="mathics_pygments",
@@ -59,7 +62,7 @@ setup(
     author_email="rb@dustyfeet.com",
     license="MIT",
     keywords="syntax highlighting mathematica",
-    url="http://github.com/rsmenon/pygments-mathematica/",
+    url="http://github.com/Mathics3/mathics-pygments/",
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: End Users/Desktop",
@@ -73,15 +76,20 @@ setup(
         "Topic :: Text Processing",
         "Topic :: Utilities",
     ],
+    package_data={
+        "mathematica": [
+            "data/mma-tables.json",
+        ],
+    },
     packages=["mathics_pygments"],
     install_requires=["Pygments >= 2", "Mathics_Scanner", "ujson"],
     include_package_data=False,
     platforms=["any"],
     entry_points={
-        "pygments.lexers": ["MathematicaLexer = mathematica:MathematicaLexer"],
+        "pygments.lexers": ["MathematicaLexer = mathics_pygments:MathematicaLexer"],
         "pygments.styles": [
-            "mathematica = mathematica:MathematicaStyle",
-            "mathematicanotebook = mathematica:MathematicaNotebookStyle",
+            "mathematica = mathics_pygments:MathematicaStyle",
+            "mathematicanotebook = mathics_pygments:MathematicaNotebookStyle",
         ],
     },
     zip_safe=False,

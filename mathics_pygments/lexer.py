@@ -10,86 +10,108 @@ from pygments.token import Token as PToken
 
 import mathics_pygments.builtins as mma
 
+
 class Regex:
-    IDENTIFIER = r'[a-zA-Z\$][a-zA-Z0-9\$]*'
-    NAMED_CHARACTER = r'\\\[{identifier}]'.format(identifier=IDENTIFIER)
-    SYMBOLS = (r'[`]?({identifier}|{named_character})(`({identifier}|{named_character}))*[`]?'
-               .format(identifier=IDENTIFIER, named_character=NAMED_CHARACTER))
-    INTEGER = r'[0-9]+'
-    FLOAT = r'({integer})?\.[0-9]+|{integer}\.'.format(integer=INTEGER)
-    REAL = r'({integer}|{float})`({integer}|{float})?|{float}'.format(integer=INTEGER, float=FLOAT)
-    BASE_NUMBER = r'{integer}\s*\^\^\s*({real}|{integer})'.format(integer=INTEGER, real=REAL)
-    SCIENTIFIC_NUMBER = r'({real}|{integer})\s*\*\^\s*{integer}'.format(real=REAL, integer=INTEGER)
-    PATTERNS = r'{symbol}\_{{1,3}}({symbol})?|({symbol})?\_{{1,3}}{symbol}'.format(symbol=SYMBOLS)
-    SLOTS = r'#{symbol}|#\"{symbol}\"|#{{1,2}}[0-9]*'.format(symbol=SYMBOLS)
-    MESSAGES = r'(::)(\s*)({symbol})'.format(symbol=SYMBOLS)
+    IDENTIFIER = r"[a-zA-Z\$][a-zA-Z0-9\$]*"
+    NAMED_CHARACTER = f"\\[{IDENTIFIER!r}]"
+    SYMBOLS = (
+        f"[`]?({IDENTIFIER!r}|{NAMED_CHARACTER})(`({IDENTIFIER!r}|{NAMED_CHARACTER}))*[`]?'"
+    )
+    INTEGER = r"[0-9]+"
+    FLOAT = f"({INTEGER})?[.][0-9]+|{INTEGER}[.]"
+    REAL = f"({INTEGER}|{FLOAT})`({INTEGER}|{FLOAT})?|{FLOAT}"
+    BASE_NUMBER = f"{INTEGER}\\s*\\^\\^\\s*({REAL}|{INTEGER})"
+    SCIENTIFIC_NUMBER = f"({REAL}|{INTEGER})\\s*\\*\\^\\s*{INTEGER}"
+    PATTERNS = f"{SYMBOLS}\\_{{1,3}}({SYMBOLS})?|({SYMBOLS})?\\_{{1,3}}{SYMBOLS}"
+    SLOTS = f"#{SYMBOLS}|#\"{SYMBOLS}\"|#{{1,2}}[0-9]*"
+    MESSAGES = f"(::)(\\s*)({SYMBOLS})"
+    MATHICS_MESSAGE = "(\\w+)::(\\w+):( )(.+)"
+    MATHICS_MESSAGE = "(Power)::(infy): (.+)"
     GROUPINGS = words(mma.GROUPINGS).get()
     OPERATORS = words(mma.OPERATORS).get()
 
+
 class MToken:
-    BUILTIN = PToken.Name.Builtin
+    """
+    Mathics Tokens. Like Pygments Token but for Mathics.
+
+    Class variables contain Mathics tokens like BUILTIN, COMMENT.
+    These variables hold corresponding Pygments token-name value.
+    """
+    BUILTIN = PToken.Name.Function
     COMMENT = PToken.Comment
     GROUP = PToken.Punctuation
     LOCAL_SCOPE = PToken.Name.Variable.Class
     MESSAGE = PToken.Name.Exception
+    NAMESPACE = PToken.Namespace
     NUMBER = PToken.Number
     OPERATOR = PToken.Operator
     PATTERN = PToken.Name.Tag
+    PUNCTUATION = PToken.Punctuation
     SLOT = PToken.Name.Function
     STRING = PToken.String
+    TEXT = PToken.Text
     SYMBOL = PToken.Name.Variable
     UNKNOWN = PToken.Error
     WHITESPACE = PToken.Text.Whitespace
 
 
 class MathematicaLexer(RegexLexer):
-    name = 'Mathematica'
-    aliases = ['mathematica', 'mma', 'nb', 'wl', 'wolfram', 'wolfram-language']
-    filenames = ['*.cdf', '*.m', '*.ma', '*.nb', '*.wl']
+    name = "Mathematica"
+    aliases = ["mathematica", "mathics", "mma", "nb", "wl", "wolfram", "wolfram-language"]
+    filenames = ["*.cdf", "*.m", "*.ma", "*.nb", "*.wl"]
     mimetypes = [
-        'application/mathematica',
-        'application/vnd.wolfram.mathematica',
-        'application/vnd.wolfram.mathematica.package',
-        'application/vnd.wolfram.cdf',
-        'application/vnd.wolfram.cdf.text',
+        "application/mathematica",
+        "application/vnd.wolfram.mathematica",
+        "application/vnd.wolfram.mathematica.package",
+        "application/vnd.wolfram.cdf",
+        "application/vnd.wolfram.cdf.text",
     ]
     tokens = {
-        'root': [
-            (r'\(\*', MToken.COMMENT, 'comments'),
-            (r'"', MToken.STRING, 'strings'),
-            include('numbers'),
+        "root": [
+            (r"\(\*", MToken.COMMENT, "comments"),
+            (r'"', MToken.STRING, "strings"),
+            include("numbers"),
             (Regex.PATTERNS, MToken.PATTERN),
+            (Regex.IDENTIFIER, MToken.SYMBOL),
             (Regex.SLOTS, MToken.SLOT),
             (Regex.GROUPINGS, MToken.GROUP),
-            (Regex.MESSAGES, bygroups(MToken.OPERATOR, MToken.WHITESPACE, MToken.MESSAGE)),
+            (
+                Regex.MESSAGES,
+                bygroups(MToken.OPERATOR, MToken.WHITESPACE, MToken.MESSAGE),
+            ),
+            (
+                Regex.MATHICS_MESSAGE,
+                bygroups(MToken.OPERATOR, MToken.WHITESPACE, MToken.TEXT, MToken.TEXT),
+            ),
             (Regex.OPERATORS, MToken.OPERATOR),
             (Regex.SYMBOLS, MToken.SYMBOL),
-            (r'\s+', MToken.WHITESPACE),
+            (r"\s+", MToken.WHITESPACE),
         ],
-        'comments': [
-            (r'[^\*\(\)]+', MToken.COMMENT),
-            (r'\*[^\)]', MToken.COMMENT),
-            (r'\(\*', MToken.COMMENT, '#push'),
-            (r'\*\)', MToken.COMMENT, '#pop'),
-            (r'\([^\*]?|[^\*]?\)', MToken.COMMENT),
+        "comments": [
+            (r"[^\*\(\)]+", MToken.COMMENT),
+            (r"\*[^\)]", MToken.COMMENT),
+            (r"\(\*", MToken.COMMENT, "#push"),
+            (r"\*\)", MToken.COMMENT, "#pop"),
+            (r"\([^\*]?|[^\*]?\)", MToken.COMMENT),
         ],
-        'numbers': [
+        "numbers": [
             (Regex.BASE_NUMBER, MToken.NUMBER),
             (Regex.SCIENTIFIC_NUMBER, MToken.NUMBER),
             (Regex.REAL, MToken.NUMBER),
             (Regex.INTEGER, MToken.NUMBER),
         ],
-        'strings': [
+        "strings": [
             (r'[^"\\]+', MToken.STRING),
             (r'^[\\"]', MToken.STRING),
-            (r'(\\n|\\r)', MToken.STRING),
+            (r"(\\n|\\r)", MToken.STRING),
             (r'\\"', MToken.STRING),
-            (r'\\', MToken.STRING),
-            (r'"', MToken.STRING, '#pop'),
+            (r"\\", MToken.STRING),
+            (r'"', MToken.STRING, "#pop"),
         ],
     }
 
-    def get_tokens_unprocessed(self, text, stack=('root', )):
+    def get_tokens_unprocessed(self, text, stack=("root",)):
         ma = MathematicaAnnotations()
         annotations = (ma.builtins, ma.unicode, ma.lexical_scope)
         for index, token, value in RegexLexer.get_tokens_unprocessed(self, text):
@@ -163,8 +185,14 @@ class MathematicaAnnotations:
         self.scope.rhs = defaultdict(bool)
 
     def _reset_scope_level(self, level):
-        scope_vars = (self.scope.brackets, self.scope.braces, self.scope.other_groups,
-                      self.scope.stack_state, self.scope.variables, self.scope.rhs)
+        scope_vars = (
+            self.scope.brackets,
+            self.scope.braces,
+            self.scope.other_groups,
+            self.scope.stack_state,
+            self.scope.variables,
+            self.scope.rhs,
+        )
         [var.pop(level) for var in scope_vars if level in var]
 
     def _get_stack_state(self, level):
@@ -179,14 +207,14 @@ class MathematicaAnnotations:
         if token is MToken.WHITESPACE:
             return index, token, value
 
-        if self.scope.active and token is MToken.GROUP and value in ('<|', u'〈', u'〚'):
+        if self.scope.active and token is MToken.GROUP and value in ("<|", " ", " "):
             self.scope.other_groups[level] += 1
             return index, token, value
-        elif self.scope.active and token is MToken.GROUP and value in ('|>', u'〛', u'〉'):
+        elif self.scope.active and token is MToken.GROUP and value in ("|>", " ", " "):
             self.scope.other_groups[level] -= 1
             return index, token, value
 
-        if self.scope.active and token is MToken.GROUP and value == '}':
+        if self.scope.active and token is MToken.GROUP and value == "}":
             if self.scope.braces[level]:
                 self.scope.braces[level] -= 1
 
@@ -195,7 +223,7 @@ class MathematicaAnnotations:
 
             return index, token, value
 
-        if self.scope.active and token is MToken.GROUP and value == ']':
+        if self.scope.active and token is MToken.GROUP and value == "]":
             if self.scope.brackets[level]:
                 self.scope.brackets[level] -= 1
                 if not self.scope.brackets[level] and level:
@@ -207,11 +235,11 @@ class MathematicaAnnotations:
 
             return index, token, value
 
-        if token is MToken.BUILTIN and value in ('Block', 'With', 'Module'):
+        if token is MToken.BUILTIN and value in ("Block", "With", "Module"):
             self.scope.keyword = True
             return index, token, value
 
-        if token is MToken.GROUP and value == '[':
+        if token is MToken.GROUP and value == "[":
             # Enter an active state only if the preceding non-whitespace token is one of the scope
             # keyword symbols. If it is already in an active state, the counter is incremented.
             if self.scope.keyword:
@@ -224,7 +252,7 @@ class MathematicaAnnotations:
 
             return index, token, value
 
-        if self.scope.active and token is MToken.GROUP and value == '{':
+        if self.scope.active and token is MToken.GROUP and value == "{":
             if level not in self.scope.variables:
                 # The parser is not yet in the local variables section so initialize counters and
                 # containers and take a snapshot of the stack state. The frozen stack state is used
@@ -241,8 +269,11 @@ class MathematicaAnnotations:
 
             return index, token, value
 
-        if (self.scope.active and self.scope.braces[level] and
-                token in (MToken.SYMBOL, MToken.BUILTIN)):
+        if (
+            self.scope.active
+            and self.scope.braces[level]
+            and token in (MToken.SYMBOL, MToken.BUILTIN)
+        ):
             # The parser is inside the local variables section and on a builtin or a generic symbol
             # token. If it isn't in the RHS of an assignment expression, then modify the token and
             # add the value to the list of local scope variables at this level.
@@ -262,10 +293,13 @@ class MathematicaAnnotations:
             #      But in Block[{x = {1, a}, y = 2}, x + y], the stack state is not the same at {
             #      and the first , so it is still part of the RHS.
             #   2. if it has exited the local variables section (handled earlier)
-            if token is MToken.OPERATOR and value in ('=', ':='):
+            if token is MToken.OPERATOR and value in ("=", ":="):
                 self.scope.rhs[level] = True
-            elif (token is MToken.GROUP and value == ',' and
-                  self._get_stack_state(level) == self.scope.stack_state[level]):
+            elif (
+                token is MToken.GROUP
+                and value == ","
+                and self._get_stack_state(level) == self.scope.stack_state[level]
+            ):
                 self.scope.rhs[level] = False
 
             return index, token, value

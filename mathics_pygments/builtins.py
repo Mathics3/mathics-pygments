@@ -6565,7 +6565,7 @@ UNICODE_OPERATORS = {
     '≠',  # \[NotEqual]
     '≥',  # \[GreaterEqual]
     '≤',  # \[LessEqual]
-    '∞',  # \[Infinity]
+    '∞',  # \[Infinity] # is not an operator
     '⋂',  # \[Intersection]
     '≢',  # \[NotCongruent]
     '≭',  # \[NotCupCap]

@@ -82,6 +82,11 @@ setup(
         ],
     },
     packages=["mathics_pygments"],
+    package_data={
+        "mathics_pygments": [
+            "data/mma-tables.json",
+        ],
+    },
     install_requires=["Pygments >= 2", "Mathics_Scanner", "ujson"],
     include_package_data=False,
     platforms=["any"],

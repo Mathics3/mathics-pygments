@@ -21,8 +21,10 @@ class MathematicaStyle(Style):
         MToken.OPERATOR: '#555555',
         MToken.PATTERN: 'italic #6E8413',
         MToken.SLOT: 'italic #6E8413',
-        MToken.STRING: '#499A9F',
+        # MToken.STRING: '#499A9F',
+        MToken.STRING: 'italic #aaaaaa',
         MToken.SYMBOL: '#4b78b1',
+        MToken.TEXT: 'italic #aaaaaa',
         MToken.UNKNOWN: '#555555',
     }
 
@@ -40,7 +42,9 @@ class MathematicaNotebookStyle(Style):
         MToken.OPERATOR: 'bold #000000',
         MToken.PATTERN: 'bold italic #438958',
         MToken.SLOT: 'bold italic #438958',
-        MToken.STRING: 'bold #666666',
+        MToken.STRING: 'italic #999999',
+        # MToken.STRING: 'bold #666666',
         MToken.SYMBOL: 'bold #002CC3',
+        MToken.TEXT: 'italic #999999',
         MToken.UNKNOWN: 'bold #000000',
     }

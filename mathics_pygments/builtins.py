@@ -15,8 +15,9 @@ with open(osp.join(get_datadir(), "mma-tables.json"), "r") as f:
     _data = ujson.load(f)
 
 # @ is not really an operator
-OPERATORS = _data["ascii-operators"] + ["@"]
+OPERATORS = _data["ascii-operators"]
 
+# The below is in pygments-mathematica 0.3.5
 # OPERATORS_OLD = (
 #     '!',  # Factorial
 #     '!=',  # NotEqual
@@ -6558,7 +6559,7 @@ UNICODE_OPERATORS_OLD = {
     '∮',  # \[ContourIntegral]
     '∳',  # \[CounterClockwiseContourIntegral]
     '∯',  # \[DoubleContourIntegral]
-    '°',  # \[Degree]
+    '°',  # \[Degree]  # this is wrong and not an operator but letterlike
     '∇',  # \[Del]
     '÷',  # \[Divide]
     '≐',  # \[DotEqual]

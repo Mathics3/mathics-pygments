@@ -6544,7 +6544,7 @@ SYSTEM_SYMBOLS = {
 }
 
 # The Mathics parser can't handle Degree ("uB0" ) as an operator so we'll add it here.
-UNICODE_OPERATORS = set(_data["unicode-operators"] + ["\uB0"])
+UNICODE_OPERATORS = set(_data["unicode-operators"] + ["\u00B0"])
 
 UNICODE_OPERATORS_OLD = {
     '·',  # \[CenterDot]
@@ -6694,7 +6694,6 @@ UNICODE_OPERATORS_OLD = {
     '⟶',  # \[LongRightArrow]
     '↙',  # \[LowerLeftArrow]
     '↘',  # \[LowerRightArrow]
-     # Start here
     '⋛',  # \[GreaterEqualLess]
     '≧',  # \[GreaterFullEqual]
     '≫',  # \[GreaterGreater]
@@ -6739,6 +6738,7 @@ UNICODE_OPERATORS_OLD = {
     '⥮',  # \[UpEquilibrium]
     '↖',  # \[UpperLeftArrow]
     '↗',  # \[UpperRightArrow]
+
     '∶',  # \[Colon]
     '≡',  # \[Congruent]
     '∐',  # \[Coproduct]

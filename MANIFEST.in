@@ -1,5 +1,6 @@
 include README.md
 include ChangeLog
+include CHANGES.rst
 include LICENSE
 include Makefile
 recursive-include mathics_pygments *.py

@@ -37,6 +37,9 @@ class MToken:
 
     Class variables contain Mathics tokens like BUILTIN, COMMENT.
     These variables hold corresponding Pygments token-name value.
+
+    The style, e.g. "colorful", "zenburn", "xcode", ultimately determines
+    out this appears on a terminal
     """
     BUILTIN = PToken.Name.Function
     COMMENT = PToken.Comment
@@ -49,8 +52,8 @@ class MToken:
     PATTERN = PToken.Name.Tag
     PUNCTUATION = PToken.Punctuation
     SLOT = PToken.Name.Function
-    STRING = PToken.String
-    TEXT = PToken.Text
+    STRING = PToken.Generic.Emph
+    TEXT = PToken.Generic.Output
     SYMBOL = PToken.Name.Variable
     UNKNOWN = PToken.Error
     WHITESPACE = PToken.Text.Whitespace

@@ -31,6 +31,10 @@ test check: pytest
 clean:
 	@find . -name *.pyc -type f -delete
 
+#: Install this beauty
+install:
+	$(PYTHON) ./setup.py install
+
 distclean: clean
 	@rm mma.css || true
 

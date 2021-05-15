@@ -15,8 +15,9 @@ with open(osp.join(get_datadir(), "mma-tables.json"), "r") as f:
     _data = ujson.load(f)
 
 # @ is not really an operator
-OPERATORS = _data["ascii-operators"] + ["@"]
+OPERATORS = _data["ascii-operators"]
 
+# The below is in pygments-mathematica 0.3.5
 # OPERATORS_OLD = (
 #     '!',  # Factorial
 #     '!=',  # NotEqual
@@ -6543,7 +6544,8 @@ SYSTEM_SYMBOLS = {
     '$WolframUUID',
 }
 
-UNICODE_OPERATORS = set(_data["unicode-operators"])
+# The Mathics parser can't handle Degree ("uB0" ) as an operator so we'll add it here.
+UNICODE_OPERATORS = set(_data["unicode-operators"] + ["\u00B0"])
 
 UNICODE_OPERATORS_OLD = {
     '·',  # \[CenterDot]
@@ -6557,7 +6559,7 @@ UNICODE_OPERATORS_OLD = {
     '∮',  # \[ContourIntegral]
     '∳',  # \[CounterClockwiseContourIntegral]
     '∯',  # \[DoubleContourIntegral]
-    '°',  # \[Degree]
+    '°',  # \[Degree]  # this is wrong and not an operator but letterlike
     '∇',  # \[Del]
     '÷',  # \[Divide]
     '≐',  # \[DotEqual]
@@ -6627,7 +6629,6 @@ UNICODE_OPERATORS_OLD = {
     '⊎',  # \[UnionPlus]
     '∴',  # \[Therefore]
     '∵',  # \[Because]
-     # Start here
     '⊓',  # \[SquareIntersection]
     '⊏',  # \[SquareSubset]
     '⊑',  # \[SquareSubsetEqual]
@@ -6738,6 +6739,7 @@ UNICODE_OPERATORS_OLD = {
     '⥮',  # \[UpEquilibrium]
     '↖',  # \[UpperLeftArrow]
     '↗',  # \[UpperRightArrow]
+
     '∶',  # \[Colon]
     '≡',  # \[Congruent]
     '∐',  # \[Coproduct]

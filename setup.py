@@ -83,7 +83,7 @@ setup(
             "data/mma-tables.json",
         ],
     },
-    install_requires=["Pygments >= 2", "Mathics_Scanner", "ujson"],
+    install_requires=["Pygments >= 2", "Mathics_Scanner>=1.2.0", "ujson"],
     include_package_data=False,
     platforms=["any"],
     entry_points={

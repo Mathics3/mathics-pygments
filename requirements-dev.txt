@@ -1,1 +1,3 @@
+# ujson is really just optional
+ujson
 pytest

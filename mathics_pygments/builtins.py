@@ -4,7 +4,10 @@
 # Licensed under the MIT License (https://opensource.org/licenses/MIT)
 
 import os.path as osp
-import ujson
+try:
+    import ujson
+except ImportError:
+    import json as ujson
 
 def get_datadir():
     datadir = osp.normcase(osp.join(osp.dirname(osp.abspath(__file__)), "data"))

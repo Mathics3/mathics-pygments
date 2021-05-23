@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+1.0.1
+-----
+
+* Fix RE's that I had messed up in initial port for Slots, Patterns and Named Characters
+* Make ujson optional. This makes this runnable from pyston 2.2
+
+Note: There are still a few tests from pygments-mathematica that fail.
+
 1.0.0
 -----
 

@@ -2,23 +2,27 @@
 
 [![mathics-pygments (OSX)](https://github.com/Mathics3/mathics-pygments/actions/workflows/osx.yaml/badge.svg)](https://github.com/Mathics3/mathics-pygments/actions/workflows/osx.yaml)
 [![mathics-pygments (ubuntu)](https://github.com/Mathics3/mathics-pygments/actions/workflows/ubuntu.yaml/badge.svg)](https://github.com/Mathics3/mathics-pygments/actions/workflows/ubuntu.yaml)
+![](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)
+[![Packaging status](https://repology.org/badge/tiny-repos/mathics-pygments.svg)](https://repology.org/project/mathics-pygments/versions)
+
+
 
 A lexer and highlighter for [_Mathematica_](http://wolfram.com/mathematica)/Wolfram Language
  source code using the [pygments](http://pygments.org) engine.
 
- This code is based on [pygments-mathematica](https://pypi.org/project/pygments-mathematica/) but has been specially revised so it interactis with [mathicsscript](https://pypi.org/project/mathicsscript/). As such it works better that pygments-mathematica for this use, and possibly might not be as good in other contexts. Over time though this should get address.
+ This code is based on [pygments-mathematica](https://pypi.org/project/pygments-mathematica/) but has been specially revised so it interacts with [mathicsscript](https://pypi.org/project/mathicsscript/). As such it works better that pygments-mathematica for this use, and possibly might not be as good in other contexts. Over time though this should get address.
 
  Another difference, is the fact that this package is relegate knowledge about operator names to [Mathics-Scanner](https://pypi.org/project/Mathics-Scanner/).
 
-![](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)
+
 ## Features
 
 It can currently lex and highlight:
 
-  - All builtin functions in the ``System` `` context including unicode symbols like `π` except those
-  that use characters from the private unicode space (e.g. `\[FormalA]`).
+  - All builtin functions in the ``System` `` context including Unicode symbols like `π` except those
+  that use characters from the private Unicode space (e.g. `\[FormalA]`).
   - User defined symbols, including those in a context.
-  - All operators including unicode operators like `∈` and `⊕`.
+  - All operators including Unicode operators like `∈` and `⊕`.
   - Comments, including multi line and nested.
   - Strings, including multi line and escaped quotes.
   - Patterns, slots (including named slots `#name` introduced in version 10) and slot sequences.

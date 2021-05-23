@@ -13,7 +13,7 @@ import mathics_pygments.builtins as mma
 
 class Regex:
     IDENTIFIER = r"[a-zA-Z\$][a-zA-Z0-9\$]*"
-    NAMED_CHARACTER = fr"\\\[{IDENTIFIER}]"
+    NAMED_CHARACTER = fr"\\\[{IDENTIFIER}\]"
     SYMBOLS = (fr'[`]?({IDENTIFIER}|{NAMED_CHARACTER})(`({IDENTIFIER}|{NAMED_CHARACTER}))*[`]?')
     INTEGER = r"[0-9]+"
     FLOAT = f"({INTEGER})?[.][0-9]+|{INTEGER}[.]"

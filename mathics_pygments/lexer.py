@@ -13,22 +13,19 @@ import mathics_pygments.builtins as mma
 
 class Regex:
     IDENTIFIER = r"[a-zA-Z\$][a-zA-Z0-9\$]*"
-    NAMED_CHARACTER = f"\\[{IDENTIFIER!r}]"
-    SYMBOLS = (
-        f"[`]?({IDENTIFIER!r}|{NAMED_CHARACTER})(`({IDENTIFIER!r}|{NAMED_CHARACTER}))*[`]?'"
-    )
+    NAMED_CHARACTER = fr"\\\[{IDENTIFIER}]"
+    SYMBOLS = (fr'[`]?({IDENTIFIER}|{NAMED_CHARACTER})(`({IDENTIFIER}|{NAMED_CHARACTER}))*[`]?')
     INTEGER = r"[0-9]+"
     FLOAT = f"({INTEGER})?[.][0-9]+|{INTEGER}[.]"
-    REAL = f"({INTEGER}|{FLOAT})`({INTEGER}|{FLOAT})?|{FLOAT}"
-    BASE_NUMBER = f"{INTEGER}\\s*\\^\\^\\s*({REAL}|{INTEGER})"
-    SCIENTIFIC_NUMBER = f"({REAL}|{INTEGER})\\s*\\*\\^\\s*{INTEGER}"
-    PATTERNS = f"{SYMBOLS}\\_{{1,3}}({SYMBOLS})?|({SYMBOLS})?\\_{{1,3}}{SYMBOLS}"
-    SLOTS = f"#{SYMBOLS}|#\"{SYMBOLS}\"|#{{1,2}}[0-9]*"
-    MESSAGES = f"(::)(\\s*)({SYMBOLS})"
-    MATHICS_MESSAGE = "(\\w+)::(\\w+):( )(.+)"
-    MATHICS_MESSAGE = "(Power)::(infy): (.+)"
+    REAL = fr"({INTEGER}|{FLOAT})`({INTEGER}|{FLOAT})?|{FLOAT}"
+    BASE_NUMBER = fr"{INTEGER}\s*\^\^\s*({REAL}|{INTEGER})"
+    SCIENTIFIC_NUMBER = fr"({REAL}|{INTEGER})\s*\*\^\s*{INTEGER}"
+    PATTERNS = fr"{SYMBOLS}\_{{1,3}}({SYMBOLS})?|({SYMBOLS})?\_{{1,3}}{SYMBOLS}"
+    SLOTS = fr"#{SYMBOLS}|#\"{SYMBOLS}\"|#{{1,2}}[0-9]*"
+    MESSAGES = fr"(::)(\\s*)({SYMBOLS})"
     GROUPINGS = words(mma.GROUPINGS).get()
     OPERATORS = words(mma.OPERATORS).get()
+    MATHICS_MESSAGE = "(\\w+)::(\\w+):( )(.+)"
 
 
 class MToken:

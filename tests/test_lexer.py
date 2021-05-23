@@ -124,7 +124,6 @@ class TestMathematicaLexer:
         expected = [[(MToken.NUMBER, num)] for num in code]
         self.verify_all(code, expected)
 
-    @pytest.mark.skip("Need to go over patterns")
     def test_patterns(self):
         code = [
             '_Head', '__Head', '___Head',
@@ -135,7 +134,6 @@ class TestMathematicaLexer:
         expected = [[(MToken.PATTERN, pat)] for pat in code]
         self.verify_all(code, expected)
 
-    @pytest.mark.skip("Need to go over slots")
     def test_slots(self):
         code = ['#', '#1', '#234']
         expected = [[(MToken.SLOT, st)] for st in code]
@@ -146,7 +144,6 @@ class TestMathematicaLexer:
         expected = [[(MToken.SLOT, st)] for st in code]
         self.verify_all(code, expected)
 
-    @pytest.mark.skip("Need to go over association slots")
     def test_association_slots(self):
         code = ['#foo', '#"foo"', '#foo`bar', '#Foo$1`Bar2$']
         expected = [[(MToken.SLOT, st)] for st in code]
@@ -200,7 +197,6 @@ class TestMathematicaLexer:
         ]
         self.verify_all(code, expected)
 
-    @pytest.mark.skip("Need to go builtins")
     def test_builtins(self):
         code = list(mma.SYSTEM_SYMBOLS)
         expected = [[(MToken.BUILTIN, sym)] for sym in code]
@@ -221,13 +217,12 @@ class TestMathematicaLexer:
         expected = [[(MToken.OPERATOR, op)] for op in code]
         self.verify_all(code, expected)
 
-    @pytest.mark.skip("Need to go scope_simple")
+    @pytest.mark.skip("Need to go over unicode_undefined")
     def test_unicode_undefined(self):
         code = list(mma.UNICODE_SYSTEM_UNDEFINED_SYMBOLS)
         expected = [[(MToken.SYMBOL, sym)] for sym in code]
         self.verify_all(code, expected)
 
-    @pytest.mark.skip("Need to go scope_simple")
     def test_lexical_scope_simple(self):
         code = [
             'Block[{x = 1}, Sin[x]]',
@@ -296,7 +291,6 @@ class TestMathematicaLexer:
         ]
         self.verify_all(code, expected)
 
-    @pytest.mark.skip("Need to go lexical_scope_nested")
     def test_lexical_scope_nested(self):
         code = 'Block[{Plus = Times}, x + With[{y = 1}, 3 * y]]'
         expected = [
@@ -336,7 +330,6 @@ class TestMathematicaLexer:
         ]
         self.verify(code, expected)
 
-    @pytest.mark.skip("Need to go lexical_scope_nested")
     def test_lexical_scope_nasty(self):
         code = 'Block[{x=Module[{y=<|a->1,b->2|>},y],z=With[{k={1,2}},k*3]}, x+y*Block[{k=3},f[k]]]'
         expected = [
@@ -405,3 +398,8 @@ class TestMathematicaLexer:
             (MToken.GROUP, ']'),
         ]
         self.verify(code, expected)
+
+if __name__ == "__main__":
+    t = TestMathematicaLexer()
+    t.setup()
+    t.test_patterns()

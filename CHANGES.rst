@@ -1,6 +1,18 @@
 CHANGES
 =======
 
+1.0.2
+-----
+
+Reorder list of REs tried so that Symbols re comes before Identifier
+regular expression.
+
+This corrects symbol detection and "<<" or ``Get[]`` detection.
+
+(There are still two classes lexer tests that need to be addressed to
+be on par with pygments-mathematica).
+
+
 1.0.1
 -----
 

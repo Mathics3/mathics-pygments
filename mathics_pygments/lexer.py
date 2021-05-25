@@ -73,20 +73,27 @@ class MathematicaLexer(RegexLexer):
             (r'"', MToken.STRING, "strings"),
             include("numbers"),
             (Regex.PATTERNS, MToken.PATTERN),
-            (Regex.IDENTIFIER, MToken.SYMBOL),
+
+            (Regex.SYMBOLS, MToken.SYMBOL),
+            (
+                Regex.MATHICS_MESSAGE,
+                bygroups(MToken.OPERATOR, MToken.WHITESPACE, MToken.TEXT, MToken.TEXT),
+            ),
+
             (Regex.SLOTS, MToken.SLOT),
             (Regex.GROUPINGS, MToken.GROUP),
             (
                 Regex.MESSAGES,
                 bygroups(MToken.OPERATOR, MToken.WHITESPACE, MToken.MESSAGE),
             ),
-            (
-                Regex.MATHICS_MESSAGE,
-                bygroups(MToken.OPERATOR, MToken.WHITESPACE, MToken.TEXT, MToken.TEXT),
-            ),
             (Regex.OPERATORS, MToken.OPERATOR),
-            (Regex.SYMBOLS, MToken.SYMBOL),
             (r"\s+", MToken.WHITESPACE),
+
+            # Note IDENTIFER should come after tokens that have IDENTIFIER parts, like SYMBOLS.
+            # Otherwise we may have System`foo matching identifier System over Symbol System`foo
+            #
+            # I don't understand why this is not a problem in  pygments-mathematica.
+            (Regex.IDENTIFIER, MToken.SYMBOL),
         ],
         "comments": [
             (r"[^\*\(\)]+", MToken.COMMENT),

@@ -154,9 +154,10 @@ class TestMathematicaLexer:
         expected = [[(MToken.OPERATOR, op)] for op in code]
         self.verify_all(code, expected)
 
-    @pytest.mark.skip("Need to go over messages")
+    @pytest.mark.skip("Need to go messages and to detect ::Exception")
     def test_messages(self):
         code = ['General::foo', 'Foo::bar', 'Foo`Bar::baz']
+        from trepan.api import debug; debug()
         expected = [
             [
                 (MToken.BUILTIN, 'General'),
@@ -176,13 +177,11 @@ class TestMathematicaLexer:
         ]
         self.verify_all(code, expected)
 
-    @pytest.mark.skip("Need to go over symbols")
     def test_symbols(self):
         code = ['foo', 'Foo', 'camelCase', 'Context`symbol', '`symbol', '$foo`bar', '$Bar`Baz`Qux']
         expected = [[(MToken.SYMBOL, sym)] for sym in code]
         self.verify_all(code, expected)
 
-    @pytest.mark.skip("Need to go over get")
     def test_get(self):
         code = ['<<Foo`', '<<Foo`Bar`']
         expected = [
@@ -402,4 +401,4 @@ class TestMathematicaLexer:
 if __name__ == "__main__":
     t = TestMathematicaLexer()
     t.setup()
-    t.test_patterns()
+    t.test_get()

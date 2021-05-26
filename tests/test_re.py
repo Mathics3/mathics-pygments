@@ -44,5 +44,10 @@ def test_regex():
     for string in base_numbers:
         verify_match_all(string, Regex.BASE_NUMBER, "Base number regular expression")
 
+    slots = ["#", "#1", "#234"]
+    for string in slots:
+        verify_match_all(string, Regex.SLOTS, "Slot regular expression")
+
+# For isolated individual testing...
 if __name__ == "__main__":
     test_regex()

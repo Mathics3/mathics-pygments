@@ -6951,7 +6951,6 @@ UNICODE_SYSTEM_UNDEFINED_SYMBOLS = {
     'ϛ',  # \[Stigma]
     'τ',  # \[Tau]
     'θ',  # \[Theta]
-    '∼',  # \[Tilde]
     '™',  # \[Trademark]
     '⎵',  # \[UnderBracket]
     '▴',  # \[UpPointer]

@@ -12,7 +12,7 @@ A lexer and highlighter for [_Mathematica_](http://wolfram.com/mathematica)/Wolf
 
  This code is based on [pygments-mathematica](https://pypi.org/project/pygments-mathematica/) but has been specially revised so it interacts with [mathicsscript](https://pypi.org/project/mathicsscript/). As such it works better that pygments-mathematica for this use, and possibly might not be as good in other contexts. Over time though this should get address.
 
- Another difference, is the fact that this package is relegate knowledge about operator names to [Mathics-Scanner](https://pypi.org/project/Mathics-Scanner/).
+ Another difference, is the fact that this package relegates knowledge about operator names to [Mathics-Scanner](https://pypi.org/project/Mathics-Scanner/).
 
 
 ## Features

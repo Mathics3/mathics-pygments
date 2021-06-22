@@ -10,5 +10,4 @@ __all__ = [
     MathematicaLexer,
     MathematicaNotebookStyle,
     MathematicaStyle,
-
 ]

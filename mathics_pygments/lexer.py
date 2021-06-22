@@ -14,7 +14,9 @@ import mathics_pygments.builtins as mma
 class Regex:
     IDENTIFIER = r"[a-zA-Z\$][a-zA-Z0-9\$]*"
     NAMED_CHARACTER = fr"\\\[{IDENTIFIER}\]"
-    SYMBOLS = (fr'[`]?({IDENTIFIER}|{NAMED_CHARACTER})(`({IDENTIFIER}|{NAMED_CHARACTER}))*[`]?')
+    SYMBOLS = (
+        fr"[`]?({IDENTIFIER}|{NAMED_CHARACTER})(`({IDENTIFIER}|{NAMED_CHARACTER}))*[`]?"
+    )
     INTEGER = r"[0-9]+"
     FLOAT = f"({INTEGER})?[.][0-9]+|{INTEGER}[.]"
     REAL = fr"({INTEGER}|{FLOAT})`({INTEGER}|{FLOAT})?|{FLOAT}"
@@ -38,6 +40,7 @@ class MToken:
     The style, e.g. "colorful", "zenburn", "xcode", ultimately determines
     out this appears on a terminal
     """
+
     BUILTIN = PToken.Name.Function
     COMMENT = PToken.Comment
     GROUP = PToken.Punctuation
@@ -58,7 +61,15 @@ class MToken:
 
 class MathematicaLexer(RegexLexer):
     name = "Mathematica"
-    aliases = ["mathematica", "mathics", "mma", "nb", "wl", "wolfram", "wolfram-language"]
+    aliases = [
+        "mathematica",
+        "mathics",
+        "mma",
+        "nb",
+        "wl",
+        "wolfram",
+        "wolfram-language",
+    ]
     filenames = ["*.cdf", "*.m", "*.ma", "*.nb", "*.wl"]
     mimetypes = [
         "application/mathematica",
@@ -73,13 +84,11 @@ class MathematicaLexer(RegexLexer):
             (r'"', MToken.STRING, "strings"),
             include("numbers"),
             (Regex.PATTERNS, MToken.PATTERN),
-
             (Regex.SYMBOLS, MToken.SYMBOL),
             (
                 Regex.MATHICS_MESSAGE,
                 bygroups(MToken.OPERATOR, MToken.WHITESPACE, MToken.TEXT, MToken.TEXT),
             ),
-
             (Regex.SLOTS, MToken.SLOT),
             (Regex.GROUPINGS, MToken.GROUP),
             (
@@ -88,7 +97,6 @@ class MathematicaLexer(RegexLexer):
             ),
             (Regex.OPERATORS, MToken.OPERATOR),
             (r"\s+", MToken.WHITESPACE),
-
             # Note IDENTIFER should come after tokens that have IDENTIFIER parts, like SYMBOLS.
             # Otherwise we may have System`foo matching identifier System over Symbol System`foo
             #

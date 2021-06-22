@@ -26,12 +26,11 @@ def test_regex():
     ]:
         verify_match_all(string, Regex.PATTERNS, "Pattern regular expression")
 
-    integers = ['123', '0', '12345678901234567890']
+    integers = ["123", "0", "12345678901234567890"]
     for string in integers:
         verify_match_all(string, Regex.INTEGER, "Integer regular expression")
 
-    floats = ['1.23', '10.1', '.123',
-              '987654321123456789.987654321123456789']
+    floats = ["1.23", "10.1", ".123", "987654321123456789.987654321123456789"]
     for string in floats + []:
         verify_match_all(string, Regex.FLOAT, "Float regular expression")
 
@@ -39,14 +38,14 @@ def test_regex():
     for string in floats:
         verify_match_all(string, Regex.REAL, "Real regular expression")
 
-
-    base_numbers = ['2^^101', '8 ^^ 17', '10^^ 3.4']
+    base_numbers = ["2^^101", "8 ^^ 17", "10^^ 3.4"]
     for string in base_numbers:
         verify_match_all(string, Regex.BASE_NUMBER, "Base number regular expression")
 
     slots = ["#", "#1", "#234"]
     for string in slots:
         verify_match_all(string, Regex.SLOTS, "Slot regular expression")
+
 
 # For isolated individual testing...
 if __name__ == "__main__":

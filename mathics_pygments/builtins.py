@@ -9,9 +9,11 @@ try:
 except ImportError:
     import json as ujson
 
+
 def get_datadir():
     datadir = osp.normcase(osp.join(osp.dirname(osp.abspath(__file__)), "data"))
     return osp.realpath(datadir)
+
 
 # Load tables from disk
 with open(osp.join(get_datadir(), "mma-tables.json"), "r") as f:
@@ -6774,7 +6776,6 @@ UNICODE_GROUPINGS = {
     '〈',  # \[LeftAngleBracket]
     '〉',  # \[RightAngleBracket]
 }
-
 
 
 UNICODE_SYSTEM_SYMBOLS = {

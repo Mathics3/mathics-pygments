@@ -13,18 +13,18 @@ import mathics_pygments.builtins as mma
 
 class Regex:
     IDENTIFIER = r"[a-zA-Z\$][a-zA-Z0-9\$]*"
-    NAMED_CHARACTER = fr"\\\[{IDENTIFIER}\]"
+    NAMED_CHARACTER = rf"\\\[{IDENTIFIER}\]"
     SYMBOLS = (
-        fr"[`]?({IDENTIFIER}|{NAMED_CHARACTER})(`({IDENTIFIER}|{NAMED_CHARACTER}))*[`]?"
+        rf"[`]?({IDENTIFIER}|{NAMED_CHARACTER})(`({IDENTIFIER}|{NAMED_CHARACTER}))*[`]?"
     )
     INTEGER = r"[0-9]+"
     FLOAT = f"({INTEGER})?[.][0-9]+|{INTEGER}[.]"
-    REAL = fr"({INTEGER}|{FLOAT})`({INTEGER}|{FLOAT})?|{FLOAT}"
-    BASE_NUMBER = fr"{INTEGER}\s*\^\^\s*({REAL}|{INTEGER})"
-    SCIENTIFIC_NUMBER = fr"({REAL}|{INTEGER})\s*\*\^\s*{INTEGER}"
-    PATTERNS = fr"{SYMBOLS}\_{{1,3}}({SYMBOLS})?|({SYMBOLS})?\_{{1,3}}{SYMBOLS}"
-    SLOTS = fr"#{SYMBOLS}|#\"{SYMBOLS}\"|#{{1,2}}[0-9]*"
-    MESSAGES = fr"(::)(\\s*)({SYMBOLS})"
+    REAL = rf"({INTEGER}|{FLOAT})`({INTEGER}|{FLOAT})?|{FLOAT}"
+    BASE_NUMBER = rf"{INTEGER}\s*\^\^\s*({REAL}|{INTEGER})"
+    SCIENTIFIC_NUMBER = rf"({REAL}|{INTEGER})\s*\*\^\s*{INTEGER}"
+    PATTERNS = rf"{SYMBOLS}\_{{1,3}}({SYMBOLS})?|({SYMBOLS})?\_{{1,3}}{SYMBOLS}"
+    SLOTS = rf"#{SYMBOLS}|#\"{SYMBOLS}\"|#{{1,2}}[0-9]*"
+    MESSAGES = rf"(::)(\\s*)({SYMBOLS})"
     GROUPINGS = words(mma.GROUPINGS).get()
     OPERATORS = words(mma.OPERATORS).get()
     MATHICS_MESSAGE = "(\\w+)::(\\w+):( )(.+)"

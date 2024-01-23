@@ -1,3 +1,2 @@
 Pygments>=2.1
-wheel~>0.26.0
 Mathics_Scanner

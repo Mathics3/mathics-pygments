@@ -11,7 +11,7 @@ from mathics_pygments.lexer import MathematicaLexer, MToken
 
 
 class TestMathematicaLexer:
-    def setup(self):
+    def setup_method(self):
         self.lexer = MathematicaLexer()
 
     def verify(self, code, expected):
@@ -414,5 +414,5 @@ class TestMathematicaLexer:
 
 if __name__ == "__main__":
     t = TestMathematicaLexer()
-    t.setup()
+    t.setup_method()
     t.test_get()

@@ -1,3 +1,4 @@
 # ujson is really just optional
 ujson
 pytest
+wheel~>0.38.0

@@ -23,7 +23,7 @@ It currently supports:
 A Sass file containing the styles can be obtained from the package repository for use in static \
 website generators such as Jekyll, Octopress, Pelican, etc.
 
-Copyright 2021 Rocky Bernstein
+Copyright 2021, 2024 Rocky Bernstein
 (C) 2016 rsmenon
 """
 
@@ -75,6 +75,9 @@ setup(
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
         "Topic :: Text Processing",
         "Topic :: Utilities",
     ],
@@ -84,7 +87,7 @@ setup(
             "data/mma-tables.json",
         ],
     },
-    install_requires=["Pygments >= 2.9.0", "Mathics_Scanner>=1.2.0"],
+    install_requires=["Pygments >= 2.9.0", "Mathics_Scanner>=1.3.0"],
     include_package_data=False,
     platforms=["any"],
     entry_points={

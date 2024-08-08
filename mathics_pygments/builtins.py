@@ -6550,7 +6550,7 @@ SYSTEM_SYMBOLS = {
     "$WolframUUID",
 }
 
-# The Mathics parser can't handle Degree ("uB0" ) as an operator so we'll add it here.
+# The Mathics parser can't handle Degree ("uB0") as an operator, so we'll add it here.
 UNICODE_OPERATORS = set(list(_data["unicode-operators"].keys()) + ["\u00B0"])
 
 UNICODE_OPERATORS_OLD = {
@@ -6565,7 +6565,7 @@ UNICODE_OPERATORS_OLD = {
     "∮",  # \[ContourIntegral]
     "∳",  # \[CounterClockwiseContourIntegral]
     "∯",  # \[DoubleContourIntegral]
-    "°",  # \[Degree]  # this is wrong and not an operator but letterlike
+    "°",  # \[Degree] # this is wrong and not an operator but letterlike
     "∇",  # \[Del]
     "÷",  # \[Divide]
     "≐",  # \[DotEqual]

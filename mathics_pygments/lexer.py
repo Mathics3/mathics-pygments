@@ -35,7 +35,7 @@ class MToken:
     Mathics Tokens. Like Pygments Token but for Mathics.
 
     Class variables contain Mathics tokens like BUILTIN, COMMENT.
-    These variables hold corresponding Pygments token-name value.
+    These variables hold the corresponding Pygments token-name value.
 
     The style, e.g. "colorful", "zenburn", "xcode", ultimately determines
     out this appears on a terminal
@@ -97,8 +97,8 @@ class MathematicaLexer(RegexLexer):
             ),
             (Regex.OPERATORS, MToken.OPERATOR),
             (r"\s+", MToken.WHITESPACE),
-            # Note IDENTIFER should come after tokens that have IDENTIFIER parts, like SYMBOLS.
-            # Otherwise we may have System`foo matching identifier System over Symbol System`foo
+            # Note IDENTIFIER should come after tokens that have IDENTIFIER parts, like SYMBOLS.
+            # Otherwise, we may have System`foo matching identifier System over Symbol System`foo
             #
             # I don't understand why this is not a problem in  pygments-mathematica.
             (Regex.IDENTIFIER, MToken.SYMBOL),
@@ -179,11 +179,11 @@ class MathematicaAnnotations:
         self.scope.keyword = False
         self.scope.active = False
 
-        # level tracks the nestedness of local scopes (e.g. Block[{x = Block[{y = ...}, ...]}, ...])
+        # level tracks the nestedness of local scopes (e.g., Block[{x = Block[{y = ...}, ...]}, ...])
         self.scope.level = 0
 
         # The next three variables are stacks that track opening and closing brackets, braces and
-        # and other groupings (associations, angle brackets, etc.) at each level.
+        # other groupings (associations, angle brackets, etc.) at each level.
         # Braces are tracked only immediately after entering an active scope, which is where the
         # local variables are defined.
         self.scope.brackets = defaultdict(int)
@@ -279,7 +279,7 @@ class MathematicaAnnotations:
                 # The parser is inside the local variables section.
                 self.scope.braces[level] += 1
             else:
-                # In all other cases don't modify the stack.
+                # In all other cases, don't modify the stack.
                 pass
 
             return index, token, value
@@ -299,15 +299,15 @@ class MathematicaAnnotations:
                 return index, token, value
 
         elif self.scope.active and self.scope.braces[level]:
-            # If the parser is on an assignment operator, mark rhs = True so that symbols from the
-            # RHS of the assignment are not considered as local variables. The rhs value is reset
-            # when:
-            #   1. the parser is on a , inside the local variables section and the stack state
+            # If the parser is on an assignment operator, mark rsh = True so that symbols from the
+            # RHS of the assignment are not considered as local variables.
+            # The RHS value is reset when:
+            #   1. The parser is on a comma inside the local variables section, and the stack state
             #      is the same as when it entered the section. For example, in
-            #      Block[{x = 1, y = 2}, x + y], the stack state is the same at { and the first ,.
-            #      But in Block[{x = {1, a}, y = 2}, x + y], the stack state is not the same at {
-            #      and the first , so it is still part of the RHS.
-            #   2. if it has exited the local variables section (handled earlier)
+            #      Block[{x = 1, y = 2}, x + y], the stack state is the same at left brace and the first comma.
+            #      But in Block[{x = {1, a}, y = 2}, x + y], the stack state is not the same at left brace
+            #      and the first comma, so it is still part of the RHS.
+            #   2. If it has exited the local variables section (handled earlier).
             if token is MToken.OPERATOR and value in ("=", ":="):
                 self.scope.rhs[level] = True
             elif (

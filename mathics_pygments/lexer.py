@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-# Copyright (c) 2021 Rocky Bernstein
+# Copyright (c) 2021, 2024 Rocky Bernstein
 # Copyright (c) 2016 rsmenon
 # Licensed under the MIT License (https://opensource.org/licenses/MIT)
 
 from collections import defaultdict
 
-from pygments.lexer import RegexLexer, include, words, bygroups
+from pygments.lexer import RegexLexer, bygroups, include, words
 from pygments.token import Token as PToken
 
 import mathics_pygments.builtins as mma

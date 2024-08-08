@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright (c) 2021 Rocky Bernstein
+# Copyright (c) 2021, 2024 Rocky Bernstein
 # Copyright (c) 2016 rsmenon
 # Licensed under the MIT License (https://opensource.org/licenses/MIT)
 
@@ -27,8 +27,9 @@ Copyright 2021 Rocky Bernstein
 (C) 2016 rsmenon
 """
 
-from setuptools import setup
 import sys
+
+from setuptools import setup
 
 # Ensure user has the correct Python version
 if sys.version_info < (3, 6):

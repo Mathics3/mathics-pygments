@@ -2,6 +2,7 @@ GIT2CL ?= admin-tools/git2cl
 PYTHON ?= python3
 PIP ?= pip3
 RM  ?= rm
+SHELL ?= bash
 SASS ?= sass
 
 .PHONY: \
@@ -31,6 +32,10 @@ test check: pytest
 clean:
 	@find . -name *.pyc -type f -delete
 
+#: Build distribution
+dist: admin-tools/make-dist.sh
+	$(SHELL) admin-tools/make-dist.sh
+
 distclean: clean
 	@rm mma.css || true
 
@@ -50,3 +55,4 @@ rmChangeLog:
 #: Create a ChangeLog from git via git log and git2cl
 ChangeLog: rmChangeLog
 	git log --pretty --numstat --summary | $(GIT2CL) >$@
+	patch ChangeLog < ChangeLog-spell-corrected.diff

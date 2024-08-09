@@ -8,6 +8,8 @@
 /.cache
 /.python-version
 /ChangeLog
+/ChangeLog.orig
+/ChangeLog.rej
 /mma.css
 /mma.css.map
 __pycache__/

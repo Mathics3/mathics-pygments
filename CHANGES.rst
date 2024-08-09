@@ -1,6 +1,17 @@
 CHANGES
 =======
 
+1.0.3
+-----
+
+Modernize:
+
+* update Python style (black),
+* import order (isort),
+* convert test to pytest,
+* fix spelling errors, and
+* add code of conduct.
+
 1.0.2
 -----
 

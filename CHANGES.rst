@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+1.0.4
+-----
+
+This is a Transitional release.
+
+Although there is a dependency on mathics-scanner, we don't use it since tables have changed. There is some code for reading the YAML takes from the project though. With a newer and better mathics-scanner, we should be able to revise this code, use the tokenizer from mathics-scanner, and simplify things greatly.
+
 1.0.3
 -----
 

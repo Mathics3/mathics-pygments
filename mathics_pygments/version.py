@@ -5,4 +5,4 @@
 # space around "=" below.
 
 # fmt: off
-__version__="1.0.3"  # noqa
+__version__="1.0.4"  # noqa

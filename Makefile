@@ -45,7 +45,7 @@ install:
 
 #: Run py.test tests. Use environment variable "o" for pytest options
 pytest:
-	py.test tests $o
+	$(PYTHON) -m pytest tests $o
 
 
 #: Remove ChangeLog

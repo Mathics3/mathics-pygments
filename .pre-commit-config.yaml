@@ -1,13 +1,31 @@
+default_language_version:
+  python: python
 exclude: 'mathics_pygments/version.py'
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.3.0
+    rev: v4.5.0
     hooks:
+    - id: check-merge-conflict
+    - id: check-yaml
     - id: debug-statements
+      stages: [pre-commit]
     - id: end-of-file-fixer
+      stages: [pre-commit]
+      exclude: ChangeLog-spell-corrected.diff
     - id: trailing-whitespace
+      exclude: ChangeLog-spell-corrected.diff
+    - id: check-json
+      exclude: mathics_pygments/data/mma-tables.json
+-   repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        stages: [pre-commit]
+        args: ["--profile", "black"]
 -   repo: https://github.com/psf/black
-    rev: 21.6b0
+    rev: 23.12.1
     hooks:
     - id: black
       language_version: python3
+      stages: [pre-commit]
+      exclude: version.py
